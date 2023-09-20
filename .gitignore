@@ -1,0 +1,9 @@
+augmented_electricity_consumption.csv
+augmented_electricity_dataset.csv
+data_augment.py
+dataset.csv
+decision_tree_model_price.pth
+decision_tree_model_score.pth
+decision_tree_model.pth
+training.ipynb
+ecowattify_screenshots

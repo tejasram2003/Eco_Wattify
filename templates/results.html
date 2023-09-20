@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Dark background color */
+            color: white; /* Text color */
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: orange; /* Header color */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #333; /* Container background color */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        .highlight {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: orange;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #ff6600; /* Darker orange on hover */
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <h1>Results</h1>
+    <div class="container">
+        <p>Your house size: <span class="highlight">{{ input_dict.House_Size_SqFt }}</span> sq.ft</p>
+        <img src="{% static 'plot.png' %}">
+        <p>Estimated Price: <span class="highlight">Rs.{{ estimated_price|floatformat:2 }}</span></p>
+        <p>Efficiency: <span class="highlight">{{ efficiency_score|floatformat:2 }}%</span></p>
+        <a class="btn" href="/">Back to Home</a>
+    </div>
+</body>
+</html>

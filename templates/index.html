@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eco Wattify</title>
+    <style>
+        body {
+            background-color: #333; /* Dark background color */
+            color: white; /* Text color */
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: orange; /* Header color */
+        }
+
+        form {
+            margin: 20px;
+            padding: 20px;
+            background-color: #444; /* Form background color */
+            border: 1px solid #555; /* Form border */
+            border-radius: 5px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        input[type="number"],
+        select,
+        button[type="button"],
+        input[type="submit"] {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #555; /* Input and button background color */
+            color: white; /* Input and button text color */
+        }
+
+        select {
+            width: 100%;
+        }
+
+        button[type="button"] {
+            background-color: orange; /* Orange button background color */
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background-color: orange; /* Orange button background color */
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff6600; /* Darker orange on hover */
+        }
+
+        #appliance-container {
+            margin-top: 10px;
+        }
+
+        .appliance-group {
+            margin: 10px 0;
+        }
+
+        .appliance-select {
+            width: 80%;
+            background-color: #555; /* Select background color */
+            color: white; /* Select text color */
+        }
+    </style>
+</head>
+<body>
+    <h1>EcoWattify - Illuminating Efficiency, Empowering Sustainability.</h1>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        <p>Enter your house size (in sq feet):</p>
+        <input type="number" name="House_Size_SqFt" id="House_Size_SqFt"><br><br>
+
+        <div id="appliance-container">
+            <div class="appliance-group">
+                <label for="appliance">Select Appliance and energy consumption (in Watts):</label><br>
+                <select class="appliance-select" name="appliance">
+                    <option value="Fan_Wattage">Fan</option> 
+                    <option value="TV_Wattage">TV</option>
+                    <option value="Washing_Machine_Wattage">Washing Machine</option>
+                    <option value="Air_Conditioner_Wattage">Air Conditioner</option>
+                    <option value="Lighting_Wattage">Lighting</option>
+                    <option value="Refrigerator_Wattage">Refrigerator</option>
+                    <option value="Oven_Wattage">Oven</option>
+                    <option value="Microwave_Wattage">Microwave</option>
+                    <option value="Toaster_Wattage">Toaster</option>
+                    <option value="Dishwasher_Wattage">Dishwasher</option>
+                    <option value="Coffee_Maker_Wattage">Coffee_maker</option>
+                    <option value="Computer_Wattage">Computer</option>                    <!-- Add more options as needed -->
+                </select>
+                <input type="number" name="appliance"><br>
+            </div>
+        </div>
+        
+        <button type="button" id="add-appliance">Add Appliance</button>
+        <br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const applianceContainer = document.getElementById("appliance-container");
+            const addApplianceButton = document.getElementById("add-appliance");
+            let applianceCounter = 2;  // Start from 2 to avoid cloning the initial fields
+
+            addApplianceButton.addEventListener("click", function() {
+                const applianceGroup = document.querySelector(".appliance-group");
+                const clone = applianceGroup.cloneNode(true);
+                clone.querySelector(".appliance-select").id = `appliance${applianceCounter}`;
+                clone.querySelector(".appliance-select").name = `appliance${applianceCounter}`;
+                clone.querySelector("input[type='number']").name = `appliance${applianceCounter}`;
+                applianceContainer.appendChild(clone);
+                applianceCounter++;
+            });
+        });
+    </script>
+</body>
+</html>
